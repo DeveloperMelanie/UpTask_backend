@@ -8,8 +8,7 @@ export const registrationEmail = async user => {
     const { name, email, token } = user
 
     const transport = nodemailer.createTransport({
-        host: process.env.EMAIL_HOST,
-        port: process.env.EMAIL_PORT,
+        service: 'gmail',
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
@@ -17,7 +16,7 @@ export const registrationEmail = async user => {
     })
 
     // Send email with confirmation token
-    const info = await transport.sendMail({
+    await transport.sendMail({
         from: `"UpTask - Administrador de Proyectos" <cuentas@uptask.com>`,
         to: email,
         subject: 'UpTask - Confirma tu cuenta',
@@ -30,8 +29,7 @@ export const forgotPasswordEmail = async user => {
     const { name, email, token } = user
 
     const transport = nodemailer.createTransport({
-        host: process.env.EMAIL_HOST,
-        port: process.env.EMAIL_PORT,
+        service: 'gmail',
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
@@ -39,7 +37,7 @@ export const forgotPasswordEmail = async user => {
     })
 
     // Send email with confirmation token
-    const info = await transport.sendMail({
+    await transport.sendMail({
         from: `"UpTask - Administrador de Proyectos" <cuentas@uptask.com>`,
         to: email,
         subject: 'UpTask - Restablecer contraseña',
