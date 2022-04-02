@@ -60,7 +60,9 @@ const updateTask = async (req, res) => {
     const { id } = req.params
 
     try {
-        const task = await Task.findById(id).populate('project')
+        const task = await Task.findById(id)
+            .populate('project')
+            .populate('completedBy')
 
         // Check if task exists
         if (!task) {
